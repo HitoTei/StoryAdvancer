@@ -41,19 +41,14 @@ class MainFragment : Fragment() {
 
         view.findViewById<FloatingActionButton>(R.id.mainFoatingActionButton).setOnClickListener {
 
-            InsertTileDialog {
-                val now = LocalDateTime.now().toString()
-                titleListViewModel.insert(
-                    TitleItem(
-                        null,
-                        null,
-                        TitleItem.WORLD,
-                        it,
-                        now,
-                        now
+            InsertTileDialog(
+                { str: String ->
+                    val now = LocalDateTime.now().toString()
+                    titleListViewModel.insert(
+                        mainViewModel.createTitleItem(str)
                     )
-                )
-            }.show(childFragmentManager, "InsertTileDialog")
+                }
+            ).show(childFragmentManager, "InsertTileDialog")
 
         }
 

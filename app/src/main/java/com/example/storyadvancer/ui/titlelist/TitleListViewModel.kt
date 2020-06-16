@@ -31,11 +31,20 @@ class TitleListViewModel : ViewModel() {
         }
     }
 
-    fun delete(index: Int){
+    fun change(titleItem: TitleItem){
         viewModelScope.launch {
-            val list = titleList.value ?: return@launch
-            dao.delete(list[index])
+            dao.insert(titleItem)
+             val list = _titleList.value ?: return@launch
+            _changed.value = list.indexOf(titleItem)
+        }
+    }
 
+    fun delete(titleItem: TitleItem){
+        val list = titleList.value ?: return
+        val index = list.indexOf(titleItem)
+
+        viewModelScope.launch {
+            dao.delete(list[index])
             list.remove(list[index])
             _deleted.value = index
         }

@@ -7,7 +7,8 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 
 class InsertTileDialog(
-    private val insert: (String) -> Unit
+    private val insert: (String) -> Unit,
+    private var value: String = ""
 ) : DialogFragment() {
     constructor() : this({})
 
@@ -15,13 +16,14 @@ class InsertTileDialog(
 
         return requireActivity().let {
             val builder = AlertDialog.Builder(it)
-            val textEditor = EditText(it)
+            val editText = EditText(it)
+            editText.setText(value)
 
             builder
                 .setTitle("新しく追加")
-                .setView(textEditor)
+                .setView(editText)
                 .setPositiveButton("Ok") { _, _ ->
-                    insert(textEditor.text.toString())
+                    insert(editText.text.toString())
                 }
                 .setNegativeButton("Cancel") { _, _ ->
                     dismiss()
