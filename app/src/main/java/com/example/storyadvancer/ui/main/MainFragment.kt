@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storyadvancer.R
 import com.example.storyadvancer.repository.item.TitleItem
+import com.example.storyadvancer.ui.titlelist.InsertTileDialog
 import com.example.storyadvancer.ui.titlelist.TitleListAdapter
 import com.example.storyadvancer.ui.titlelist.TitleListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.time.LocalDateTime
 
 class MainFragment : Fragment() {
 
@@ -38,9 +40,21 @@ class MainFragment : Fragment() {
         }
 
         view.findViewById<FloatingActionButton>(R.id.mainFoatingActionButton).setOnClickListener {
-            titleListViewModel.insert(
-                TitleItem(null, null, TitleItem.WORLD, "hoge", "", "")
-            )
+
+            InsertTileDialog {
+                val now = LocalDateTime.now().toString()
+                titleListViewModel.insert(
+                    TitleItem(
+                        null,
+                        null,
+                        TitleItem.WORLD,
+                        it,
+                        now,
+                        now
+                    )
+                )
+            }.show(childFragmentManager, "InsertTileDialog")
+
         }
 
         return view
