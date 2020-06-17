@@ -14,6 +14,8 @@ class TitleListAdapter(
 ) : RecyclerView.Adapter<TitleListAdapter.ViewHolder>() {
 
     private var titleList = mutableListOf<TitleItem>()
+    var changeActivity = { _: TitleItem -> Unit }
+
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -40,7 +42,8 @@ class TitleListAdapter(
             TitleListItemViewModel(
                 titleList[position],
                 _change = ::changeDialog,
-                _delete = viewModel::delete
+                _delete = viewModel::delete,
+                _changeActivity = changeActivity
             )
         )
     }

@@ -21,10 +21,7 @@ abstract class TitleListViewModel : ViewModel() {
     private val _deleted = MutableLiveData<Int>()
     private val _changed = MutableLiveData<Int>()
 
-    private var worldId: Long = -1
-        set(value) {
-            field = value
-        }
+    var worldId: Long = -1
 
     val titleList: LiveData<MutableList<TitleItem>> = _titleList
     val deleted: LiveData<Int> = _deleted
@@ -50,12 +47,22 @@ abstract class TitleListViewModel : ViewModel() {
         val index = list.indexOf(titleItem)
 
         viewModelScope.launch {
-            dao.delete(list[index])
+            if (titleItem.type == TitleItem.WORLD)
+                dao.deleteAllWorldItem(titleItem.worldId ?: return@launch)
+            else
+                dao.delete(list[index])
+
             list.remove(list[index])
             _deleted.value = index
         }
     }
 
-    protected abstract suspend fun getAll(worldId: Long): MutableList<TitleItem>;
+    fun update() {
+        viewModelScope.launch {
+            _titleList.value = getAll(worldId)
+        }
+    }
+
+    abstract suspend fun getAll(worldId: Long): MutableList<TitleItem>
 
 }

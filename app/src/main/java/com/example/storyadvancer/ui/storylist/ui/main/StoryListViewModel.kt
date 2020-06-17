@@ -1,20 +1,20 @@
-package com.example.storyadvancer.ui.worldlist
+package com.example.storyadvancer.ui.storylist.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.example.storyadvancer.repository.item.TitleItem
 import java.time.LocalDateTime
 
-class WorldsViewModel : ViewModel() {
-    fun createWorldItem(title: String): TitleItem {
+class StoryListViewModel : ViewModel() {
+    var worldId: Long = -1
+    fun createStoryItem(title: String): TitleItem {
         val now = LocalDateTime.now().toString()
         return TitleItem(
             null,
-            null,
-            TitleItem.WORLD,
+            worldId,
+            TitleItem.STORY,
             title,
             now,
             now
         )
     }
-
 }

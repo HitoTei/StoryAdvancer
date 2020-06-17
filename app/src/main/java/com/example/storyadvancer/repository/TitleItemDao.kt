@@ -8,12 +8,15 @@ interface TitleItemDao {
     @Query("SELECT * FROM TitleName WHERE type = :type")
     suspend fun getAll(type: Long): List<TitleItem>
 
-    @Query("SELECT * FROM TitleName WHERE worldId = :worldId AND type = :type")
-    suspend fun getAllFromWorld(type: Long,worldId: Long): List<TitleItem>
+    @Query("SELECT * FROM TitleName WHERE type = :type AND worldId = :worldId")
+    suspend fun getAllFromWorld(type: Long, worldId: Long): List<TitleItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg titleItem: TitleItem)
 
     @Delete
     suspend fun delete(titleItem: TitleItem)
-}
+    
+    @Query("DELETE FROM TitleName WHERE worldId = :worldId")
+    suspend fun deleteAllWorldItem(worldId: Long)
+} 

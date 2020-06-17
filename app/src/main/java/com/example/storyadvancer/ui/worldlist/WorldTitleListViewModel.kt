@@ -13,4 +13,5 @@ class WorldTitleListViewModel : TitleListViewModel() {
 
         return list
     }
+
 }

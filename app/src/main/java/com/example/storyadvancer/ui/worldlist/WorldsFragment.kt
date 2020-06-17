@@ -1,5 +1,6 @@
 package com.example.storyadvancer.ui.worldlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storyadvancer.R
+import com.example.storyadvancer.ui.storylist.StoryListActivity
 import com.example.storyadvancer.ui.titlelist.InsertTileDialog
 import com.example.storyadvancer.ui.titlelist.TitleListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.time.LocalDateTime
 
 class WorldsFragment : Fragment() {
 
@@ -33,6 +34,12 @@ class WorldsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
 
             val adapter = TitleListAdapter(titleListViewModel, this@WorldsFragment)
+            adapter.changeActivity = { titleItem ->
+                val intent =
+                    Intent(this@WorldsFragment.requireActivity(), StoryListActivity::class.java)
+                intent.putExtra(StoryListActivity.STORY_WORLD_ID, titleItem.id)
+                startActivity(intent)
+            }
             this.adapter = adapter
         }
 
@@ -40,9 +47,8 @@ class WorldsFragment : Fragment() {
 
             InsertTileDialog(
                 { str: String ->
-                    val now = LocalDateTime.now().toString()
                     titleListViewModel.insert(
-                        worldsViewModel.createTitleItem(str)
+                        worldsViewModel.createWorldItem(str)
                     )
                 }
             ).show(childFragmentManager, "InsertTileDialog")
