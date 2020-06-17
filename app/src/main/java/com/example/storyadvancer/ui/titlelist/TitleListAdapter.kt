@@ -51,7 +51,7 @@ class TitleListAdapter(
                 viewModel.change(titleItem.apply { this.title = it })
             },
             titleItem.title
-        ).show(fragment.childFragmentManager,"InsertTileDialog")
+        ).show(fragment.childFragmentManager, "InsertTileDialog")
     }
 
 
@@ -65,7 +65,7 @@ class TitleListAdapter(
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TitleItemBinding.inflate(layoutInflater)
+                val binding = TitleItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

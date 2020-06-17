@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="titleItem"
             type="com.example.storyadvancer.ui.titlelist.TitleListItemViewModel" />
@@ -12,8 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> titleItem.delete()}"
-        >
+        android:background="#B3B5B5"
+        android:onClick="@{() -> titleItem.delete()}">
 
         <TextView
             android:id="@+id/title"
@@ -28,10 +28,13 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="end|bottom"
+            android:onClick="@{() -> titleItem.change()}"
             android:text="@string/change"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> titleItem.change()}" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

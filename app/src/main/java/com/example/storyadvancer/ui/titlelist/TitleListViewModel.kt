@@ -6,19 +6,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.storyadvancer.repository.Repository
 import com.example.storyadvancer.repository.item.TitleItem
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class TitleListViewModel : ViewModel() {
-    private val dao = Repository
+abstract class TitleListViewModel : ViewModel() {
+    protected val dao = Repository
         .titleItemDao()
+
     private val _titleList = MutableLiveData<MutableList<TitleItem>>().also {
         viewModelScope.launch {
-            it.value = getAll(TitleItem.WORLD)
+            it.value = getAll(worldId)
         }
     }
+
     private val _deleted = MutableLiveData<Int>()
     private val _changed = MutableLiveData<Int>()
+
+    private var worldId: Long = -1
+        set(value) {
+            field = value
+        }
 
     val titleList: LiveData<MutableList<TitleItem>> = _titleList
     val deleted: LiveData<Int> = _deleted
@@ -27,19 +33,19 @@ class TitleListViewModel : ViewModel() {
     fun insert(titleItem: TitleItem) {
         viewModelScope.launch {
             dao.insert(titleItem)
-            _titleList.value = getAll(TitleItem.WORLD)
+            _titleList.value = getAll(worldId)
         }
     }
 
-    fun change(titleItem: TitleItem){
+    fun change(titleItem: TitleItem) {
         viewModelScope.launch {
             dao.insert(titleItem)
-             val list = _titleList.value ?: return@launch
+            val list = _titleList.value ?: return@launch
             _changed.value = list.indexOf(titleItem)
         }
     }
 
-    fun delete(titleItem: TitleItem){
+    fun delete(titleItem: TitleItem) {
         val list = titleList.value ?: return
         val index = list.indexOf(titleItem)
 
@@ -50,12 +56,6 @@ class TitleListViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getAll(type: Long): MutableList<TitleItem>{
-        val list = dao.getAll(type).toMutableList()
-        if(type == TitleItem.WORLD)list.map {
-                it.worldId = it.id
-        }
-        return list
-    }
+    protected abstract suspend fun getAll(worldId: Long): MutableList<TitleItem>;
 
 }

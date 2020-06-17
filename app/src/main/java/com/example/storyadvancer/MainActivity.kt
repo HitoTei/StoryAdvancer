@@ -1,9 +1,9 @@
 package com.example.storyadvancer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.storyadvancer.repository.Repository
-import com.example.storyadvancer.ui.main.MainFragment
+import com.example.storyadvancer.ui.worldlist.WorldsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.main_container, WorldsFragment.newInstance())
+                .commitNow()
         }
     }
 }
