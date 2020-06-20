@@ -1,4 +1,4 @@
-package com.example.storyadvancer.ui.world_content.storylist
+package com.example.storyadvancer.ui.world_content.termlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storyadvancer.R
 import com.example.storyadvancer.ui.base.titlelist.TitleListAdapter
-import com.example.storyadvancer.ui.world_content.storylist.tile.StoryTileViewModel
+import com.example.storyadvancer.ui.world_content.termlist.tile.TermTileViewModel
 
-class StoryListFragment() : Fragment() {
-    private val viewModel: StoryListViewModel by activityViewModels()
+class TermListFragment() : Fragment() {
+    private val viewModel: TermListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.story_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.term_list_fragment, container, false)
 
         setRecyclerView(view)
 
@@ -29,12 +29,12 @@ class StoryListFragment() : Fragment() {
     }
 
     private fun setRecyclerView(view: View) {
-        with(view.findViewById<RecyclerView>(R.id.story_fragment_listview)) {
+        with(view.findViewById<RecyclerView>(R.id.term_fragment_listview)) {
             this.layoutManager = LinearLayoutManager(context)
             this.adapter = TitleListAdapter(
-                this@StoryListFragment,
+                this@TermListFragment,
                 viewModel,
-                StoryTileViewModel.newInstanceFactory(viewModel, this@StoryListFragment)
+                TermTileViewModel.newInstanceFactory(viewModel, this@TermListFragment)
             )
 
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))

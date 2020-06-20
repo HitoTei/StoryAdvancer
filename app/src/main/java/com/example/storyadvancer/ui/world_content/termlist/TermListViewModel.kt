@@ -1,4 +1,4 @@
-package com.example.storyadvancer.ui.world_content.storylist
+package com.example.storyadvancer.ui.world_content.termlist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,7 +13,7 @@ import com.example.storyadvancer.ui.dialog.InsertItemDialog
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
-class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
+class TermListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
 
     var worldId: Long = -1
 
@@ -72,7 +72,7 @@ class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
         return InsertItemDialog {
             viewModelScope.launch {
                 val now = LocalDateTime.now().toString()
-                val item = TitleItem(null, worldId, TitleItem.STORY, it, now, now)
+                val item = TitleItem(null, worldId, TitleItem.TERM, it, now, now)
 
                 dao.insert(item)
                 _titleItemList.value = getAll()
@@ -82,11 +82,11 @@ class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
 
     private suspend fun getAll(): MutableList<TitleItem> {
         Log.d(TAG, "getAll#worldId: $worldId")
-        val list = dao.getAllFromWorld(TitleItem.STORY, worldId)
+        val list = dao.getAllFromWorld(TitleItem.TERM, worldId)
         return list.toMutableList()
     }
 
     companion object {
-        const val TAG = "StoryListViewModel"
+        const val TAG = "TermListViewModel"
     }
 }

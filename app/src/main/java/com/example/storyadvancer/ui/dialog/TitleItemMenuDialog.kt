@@ -9,6 +9,7 @@ class TitleItemMenuDialog(
     private val delete: () -> Unit,
     private val edit: () -> Unit
 ) : DialogFragment() {
+    constructor() : this({}, {})
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 

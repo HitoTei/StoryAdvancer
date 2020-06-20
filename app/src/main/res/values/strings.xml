@@ -4,4 +4,6 @@
     <string name="delete">削除</string>
     <string name="edit">編集</string>
     <string name="menu">Menu</string>
+    <string name="story">Story</string>
+    <string name="term">Term</string>
 </resources>
