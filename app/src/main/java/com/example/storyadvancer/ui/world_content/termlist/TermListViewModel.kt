@@ -60,7 +60,6 @@ class TermListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
             val index = titleList.indexOf(titleItem)
             if (index == -1) return@launch
 
-            titleList.removeAt(index)
             _changed.value = index
 
             dao.insert(titleItem)

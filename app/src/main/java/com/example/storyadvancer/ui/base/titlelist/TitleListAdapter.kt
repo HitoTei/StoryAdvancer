@@ -34,7 +34,7 @@ class TitleListAdapter(
             notifyItemChanged(it)
         })
         notifier.deleted().observe(fragment, Observer {
-            titleList.removeAt(it)
+            titleList = notifier.allChanged().value ?: return@Observer
             notifyItemRemoved(it)
         })
     }
