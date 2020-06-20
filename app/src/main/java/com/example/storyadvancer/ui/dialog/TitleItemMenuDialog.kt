@@ -9,9 +9,14 @@ class TitleItemMenuDialog(
     private val delete: () -> Unit,
     private val edit: () -> Unit
 ) : DialogFragment() {
-    constructor() : this({}, {})
+    private var rolled = false
+
+    constructor() : this({}, {}) {
+        rolled = true
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        if (rolled) dismiss()
 
         return requireActivity().let {
             val builder = AlertDialog.Builder(it)

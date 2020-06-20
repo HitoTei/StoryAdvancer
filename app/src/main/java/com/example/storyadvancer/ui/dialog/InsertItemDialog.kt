@@ -9,9 +9,11 @@ import androidx.fragment.app.DialogFragment
 class InsertItemDialog(
     private val insert: (String) -> Unit
 ) : DialogFragment() {
-    constructor() : this({})
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        retainInstance = true
 
         return requireActivity().let {
             val builder = AlertDialog.Builder(it)
@@ -28,5 +30,13 @@ class InsertItemDialog(
                 }
             builder.create()
         }
+    }
+
+    override fun onDestroyView() {
+        val dialog = dialog
+        if (dialog != null && retainInstance) {
+            dialog.setDismissMessage(null)
+        }
+        super.onDestroyView()
     }
 }

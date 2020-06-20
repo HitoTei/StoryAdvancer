@@ -11,9 +11,10 @@ class UpdateItemDialog(
     private val initialValue: String,
     private val update: (String) -> Unit
 ) : DialogFragment() {
-    constructor() : this("", {})
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        retainInstance = true
 
         return requireActivity().let {
             val builder = AlertDialog.Builder(it)
@@ -31,5 +32,17 @@ class UpdateItemDialog(
                 }
             builder.create()
         }
+    }
+
+    override fun onDestroyView() {
+        val dialog = dialog
+        if (dialog != null && retainInstance) {
+            dialog.setDismissMessage(null)
+        }
+        super.onDestroyView()
+    }
+
+    companion object {
+        const val EDITING_STRING = "EDITING_STRING"
     }
 }
