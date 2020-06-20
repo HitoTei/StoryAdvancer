@@ -48,14 +48,16 @@ class WorldListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
 
     override fun change(titleItem: TitleItem) {
         viewModelScope.launch {
-            dao.delete(titleItem)
 
             val titleList = _titleItemList.value
                 ?: throw Exception("called the function when titleItemList is null")
             val index = titleList.indexOf(titleItem)
 
+            titleItem.updateTime = LocalDateTime.now().toString()
             titleList.removeAt(index)
             _changed.value = index
+
+            dao.insert(titleItem)
         }
     }
 

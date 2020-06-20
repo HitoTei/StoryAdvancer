@@ -60,8 +60,8 @@ class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
             val index = titleList.indexOf(titleItem)
             if (index == -1) return@launch
 
+            titleItem.updateTime = LocalDateTime.now().toString()
             _changed.value = index
-
             dao.insert(titleItem)
         }
 
