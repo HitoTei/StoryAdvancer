@@ -11,4 +11,5 @@ abstract class TitleTileViewModel(
     abstract fun changeActivity()
     abstract fun edit()
     abstract fun delete()
+    abstract fun showMenu()
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.storyadvancer.repository.item.TitleItem
 import com.example.storyadvancer.ui.base.interfaces.TitleChanger
 import com.example.storyadvancer.ui.base.titlelist.TitleTileViewModel
+import com.example.storyadvancer.ui.dialog.TitleItemMenuDialog
 import com.example.storyadvancer.ui.dialog.UpdateItemDialog
 import com.example.storyadvancer.ui.world_content.WorldContentActivity
 
@@ -42,5 +43,12 @@ class WorldTileViewModel(
 
     override fun delete() {
         changer.delete(titleItem)
+    }
+    
+    override fun showMenu() {
+        TitleItemMenuDialog(::delete, ::edit).show(
+            fragment.childFragmentManager,
+            "TitleItemMenuDialog"
+        )
     }
 }

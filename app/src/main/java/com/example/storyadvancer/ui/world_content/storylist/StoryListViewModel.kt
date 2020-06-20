@@ -37,7 +37,7 @@ class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
     override fun changed(): LiveData<Int> = _changed
 
     override fun delete(titleItem: TitleItem) {
-        
+
         viewModelScope.launch {
             val titleList = _titleItemList.value
                 ?: throw Exception("called the function when titleItemList is null")
@@ -57,6 +57,7 @@ class StoryListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
             val titleList = _titleItemList.value
                 ?: throw Exception("called the function when titleItemList is null")
             val index = titleList.indexOf(titleItem)
+            if (index == -1) return@launch
 
             titleList.removeAt(index)
             _changed.value = index
