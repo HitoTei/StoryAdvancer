@@ -1,4 +1,4 @@
-package com.example.storyadvancer.ui.titlelist
+package com.example.storyadvancer.ui.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 
-class InsertTileDialog(
-    private val insert: (String) -> Unit,
-    private var value: String = ""
+class InsertItemDialog(
+    private val insert: (String) -> Unit
 ) : DialogFragment() {
     constructor() : this({})
 
@@ -17,7 +16,6 @@ class InsertTileDialog(
         return requireActivity().let {
             val builder = AlertDialog.Builder(it)
             val editText = EditText(it)
-            editText.setText(value)
 
             builder
                 .setTitle("新しく追加")

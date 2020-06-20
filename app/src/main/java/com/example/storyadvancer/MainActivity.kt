@@ -3,7 +3,7 @@ package com.example.storyadvancer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.storyadvancer.repository.Repository
-import com.example.storyadvancer.ui.worldlist.WorldsFragment
+import com.example.storyadvancer.ui.worldlist.WorldListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, WorldsFragment.newInstance())
+                .replace(R.id.main_container, WorldListFragment())
                 .commitNow()
         }
     }
