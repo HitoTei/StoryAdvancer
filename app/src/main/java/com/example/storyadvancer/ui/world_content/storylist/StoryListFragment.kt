@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storyadvancer.R
 import com.example.storyadvancer.ui.base.titlelist.TitleListAdapter
-import com.example.storyadvancer.ui.world_content.storylist.list.StoryTileViewModel
+import com.example.storyadvancer.ui.world_content.storylist.tile.StoryTileViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class StoryListFragment() : Fragment() {

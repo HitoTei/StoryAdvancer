@@ -1,4 +1,4 @@
-package com.example.storyadvancer.ui.worldlist.list
+package com.example.storyadvancer.ui.worldlist.tile
 
 import android.content.Intent
 import androidx.fragment.app.Fragment
@@ -44,7 +44,7 @@ class WorldTileViewModel(
     override fun delete() {
         changer.delete(titleItem)
     }
-    
+
     override fun showMenu() {
         TitleItemMenuDialog(::delete, ::edit).show(
             fragment.childFragmentManager,

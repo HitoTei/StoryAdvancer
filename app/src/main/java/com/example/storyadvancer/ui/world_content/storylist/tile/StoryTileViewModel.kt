@@ -1,4 +1,4 @@
-package com.example.storyadvancer.ui.world_content.storylist.list
+package com.example.storyadvancer.ui.world_content.storylist.tile
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment
