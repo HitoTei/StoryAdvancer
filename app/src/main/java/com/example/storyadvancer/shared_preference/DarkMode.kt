@@ -3,13 +3,41 @@ package com.example.storyadvancer.shared_preference
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 
 object DarkMode {
     private var preferences: SharedPreferences? = null
-    var isCalled = false
+    private var isCalled = false
 
-    fun setNowMode(activity: Activity, isDarkMode: Boolean) {
+    fun changeTheme(activity: Activity) {
+        val isDarkMode = !getNowMode(activity)
+
+        val mode =
+            if (isDarkMode)
+                AppCompatDelegate.MODE_NIGHT_YES
+            else
+                AppCompatDelegate.MODE_NIGHT_NO
+
+        setNowMode(activity, isDarkMode)
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    fun initTheme(activity: Activity) {
+        if (isCalled) return
+        val isDarkMode = getNowMode(activity)
+
+        val mode =
+            if (isDarkMode)
+                AppCompatDelegate.MODE_NIGHT_YES
+            else
+                AppCompatDelegate.MODE_NIGHT_NO
+
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    private fun setNowMode(activity: Activity, isDarkMode: Boolean) {
+
         val data: SharedPreferences =
             preferences
                 ?: activity.getPreferences(Context.MODE_PRIVATE)
@@ -20,7 +48,7 @@ object DarkMode {
         editor.apply()
     }
 
-    fun getNowMode(activity: Activity): Boolean {
+    private fun getNowMode(activity: Activity): Boolean {
         val data: SharedPreferences =
             preferences
                 ?: activity.getPreferences(Context.MODE_PRIVATE)
