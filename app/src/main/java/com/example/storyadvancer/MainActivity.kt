@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.storyadvancer.repository.Repository
+import com.example.storyadvancer.shared_preference.DarkMode
 import com.example.storyadvancer.ui.worldlist.WorldListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
+        if (!DarkMode.isCalled) {
+            changeTheme()
+            DarkMode.isCalled = true
+        }
 
         Repository.initialize(applicationContext)
 
@@ -41,10 +47,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeTheme() {
-        val mode = when (AppCompatDelegate.getDefaultNightMode()) {
-            AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            else -> AppCompatDelegate.MODE_NIGHT_YES
-        }
+        val isDarkMode = DarkMode.getNowMode(this)
+
+        val mode =
+            if (isDarkMode)
+                AppCompatDelegate.MODE_NIGHT_YES
+            else
+                AppCompatDelegate.MODE_NIGHT_NO
+
+        DarkMode.setNowMode(this, !isDarkMode)
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
