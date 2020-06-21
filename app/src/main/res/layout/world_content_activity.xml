@@ -37,13 +37,13 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/contentActivityFloatingActionButton"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/world_content_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
