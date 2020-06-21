@@ -44,8 +44,15 @@ class StoryTileViewModel(
         changer.delete(titleItem)
     }
 
+    override fun editTag() {
+        UpdateItemDialog(titleItem.tag) {
+            titleItem.tag = it
+            changer.change(titleItem)
+        }.show(fragment.childFragmentManager, "UpdateItemDialog: tag")
+    }
+
     override fun showMenu() {
-        TitleItemMenuDialog(::delete, ::edit).show(
+        TitleItemMenuDialog(::delete, ::edit, ::editTag).show(
             fragment.childFragmentManager,
             "TitleItemMenuDialog"
         )

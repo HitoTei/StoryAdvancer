@@ -7,11 +7,12 @@ import androidx.fragment.app.DialogFragment
 
 class TitleItemMenuDialog(
     private val delete: () -> Unit,
-    private val edit: () -> Unit
+    private val edit: () -> Unit,
+    private val editTag: () -> Unit
 ) : DialogFragment() {
     private var rolled = false
 
-    constructor() : this({}, {}) {
+    constructor() : this({}, {}, {}) {
         rolled = true
     }
 
@@ -23,10 +24,11 @@ class TitleItemMenuDialog(
 
             builder
                 .setTitle("更新")
-                .setItems(arrayOf("削除", "編集")) { _, index ->
+                .setItems(arrayOf("削除", "編集", "タグの編集")) { _, index ->
                     when (index) {
                         0 -> delete()
                         1 -> edit()
+                        2 -> editTag()
                     }
                 }
                 .setNegativeButton("Cancel") { _, _ ->

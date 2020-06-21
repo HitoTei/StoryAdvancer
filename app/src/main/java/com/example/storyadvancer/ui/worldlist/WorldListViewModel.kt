@@ -65,7 +65,7 @@ class WorldListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
         return InsertItemDialog {
             viewModelScope.launch {
                 val now = LocalDateTime.now().toString()
-                val item = TitleItem(null, null, TitleItem.WORLD, it, now, now)
+                val item = TitleItem(null, null, TitleItem.WORLD, it, "", now, now)
 
                 dao.insert(item)
                 _titleItemList.value = getAll()

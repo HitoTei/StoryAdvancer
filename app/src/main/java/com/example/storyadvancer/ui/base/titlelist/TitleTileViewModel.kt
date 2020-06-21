@@ -10,6 +10,7 @@ abstract class TitleTileViewModel(
 ) : ViewModel() {
     abstract fun changeActivity()
     abstract fun edit()
+    abstract fun editTag()
     abstract fun delete()
     abstract fun showMenu()
 }
