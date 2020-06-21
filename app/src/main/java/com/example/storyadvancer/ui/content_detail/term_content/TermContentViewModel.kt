@@ -18,7 +18,7 @@ class TermContentViewModel : ViewModel() {
             viewModelScope.launch {
                 val items = dao.getTerm(termId)
                 _termItem.value =
-                    if (items.isEmpty()) TermItem(termId, "", "")
+                    if (items.isEmpty()) TermItem(termId, "")
                     else items[0]
             }
         }

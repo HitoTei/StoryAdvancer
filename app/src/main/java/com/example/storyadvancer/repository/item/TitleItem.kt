@@ -10,6 +10,7 @@ data class TitleItem(
     var worldId: Long?,
     var type: Long,
     var title: String,
+    var tag: String,
     var updateTime: String,
     var createTime: String
 ) {

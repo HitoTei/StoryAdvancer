@@ -74,7 +74,7 @@ class TermListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
         return InsertItemDialog {
             viewModelScope.launch {
                 val now = LocalDateTime.now().toString()
-                val item = TitleItem(null, worldId, TitleItem.TERM, it, now, now)
+                val item = TitleItem(null, worldId, TitleItem.TERM, it, "", now, now)
 
                 dao.insert(item)
                 _titleItemList.value = getAll()

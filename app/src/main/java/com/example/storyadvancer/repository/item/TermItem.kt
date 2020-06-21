@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 data class TermItem(
     @PrimaryKey
     var id: Long?,
-    var content: String?,
-    var tag: String
+    var content: String?
 )
