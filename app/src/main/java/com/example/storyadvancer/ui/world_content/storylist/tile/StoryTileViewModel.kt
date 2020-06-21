@@ -1,10 +1,11 @@
 package com.example.storyadvancer.ui.world_content.storylist.tile
 
-import android.widget.Toast
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.example.storyadvancer.repository.item.TitleItem
 import com.example.storyadvancer.ui.base.interfaces.TitleChanger
 import com.example.storyadvancer.ui.base.titlelist.TitleTileViewModel
+import com.example.storyadvancer.ui.content_detail.story_content.StoryContentActivity
 import com.example.storyadvancer.ui.dialog.TitleItemMenuDialog
 import com.example.storyadvancer.ui.dialog.UpdateItemDialog
 
@@ -26,7 +27,10 @@ class StoryTileViewModel(
     }
 
     override fun changeActivity() {
-        Toast.makeText(fragment.context, "まだできてないよ", Toast.LENGTH_SHORT).show()
+        val intent = Intent(fragment.context, StoryContentActivity::class.java)
+        intent.putExtra(StoryContentActivity.STORY_ID, titleItem.id)
+        intent.putExtra(StoryContentActivity.STORY_TITLE, titleItem.title)
+        fragment.startActivity(intent)
     }
 
     override fun edit() {

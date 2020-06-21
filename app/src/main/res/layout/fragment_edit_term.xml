@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.storyadvancer.ui.content_detail.term_content.TermContentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.content_detail.term_content.edit.EditTermFragment">
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:autofillHints=""
+            android:text="@={vm.termItem.content}"
+            android:labelFor="@id/editTextTextMultiLine2" />
+    </FrameLayout>
+</layout>

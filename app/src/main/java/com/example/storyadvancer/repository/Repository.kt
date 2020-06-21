@@ -2,12 +2,15 @@ package com.example.storyadvancer.repository
 
 import android.content.Context
 import androidx.room.Room
+import com.example.storyadvancer.repository.dao.StoryItemDao
+import com.example.storyadvancer.repository.dao.TermItemDao
+import com.example.storyadvancer.repository.dao.TitleItemDao
 
 object Repository {
-    var db: ItemDatabase? = null
+    private var _db: ItemDatabase? = null
 
     fun initialize(context: Context) {
-        db = Room.databaseBuilder(
+        _db = Room.databaseBuilder(
             context,
             ItemDatabase::class.java,
             "item-database"
@@ -16,8 +19,18 @@ object Repository {
     }
 
     fun titleItemDao(): TitleItemDao {
-        val database = db ?: throw Exception("First, call the initialize");
-        return database.titleItemDao()
+        val db = _db ?: throw Exception("First, call the initialize")
+        return db.titleItemDao()
+    }
+
+    fun storyItemDao(): StoryItemDao {
+        val db = _db ?: throw Exception("First, call the initialize")
+        return db.storyItemDao()
+    }
+
+    fun termItemDao(): TermItemDao {
+        val db = _db ?: throw Exception("First, call the initialize")
+        return db.termItemDao()
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.storyadvancer.repository
+package com.example.storyadvancer.repository.dao
 
 import androidx.room.*
 import com.example.storyadvancer.repository.item.TitleItem

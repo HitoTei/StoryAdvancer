@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.content_detail.term_content.TermContentActivity" />
+        <activity android:name=".ui.content_detail.story_content.StoryContentActivity" />
         <activity android:name=".ui.world_content.WorldContentActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
