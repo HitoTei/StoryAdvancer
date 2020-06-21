@@ -18,6 +18,7 @@ class TermListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
     var worldId: Long = -1
 
     private val dao = Repository.titleItemDao()
+    private val termDao = Repository.termItemDao()
 
     private val _titleItemList: MutableLiveData<MutableList<TitleItem>> by lazy {
         MutableLiveData<MutableList<TitleItem>>().apply {
@@ -48,6 +49,7 @@ class TermListViewModel : ViewModel(), ChangeTitleNotifier, TitleChanger {
             _deleted.value = index
 
             dao.delete(titleItem)
+            termDao.deleteById(titleItem.id ?: return@launch)
         }
 
     }

@@ -8,6 +8,9 @@ interface StoryItemDao {
     @Query("SELECT * FROM StoryItem WHERE id = :storyId")
     suspend fun getStory(storyId: Long): List<StoryItem>
 
+    @Query("DELETE FROM StoryItem WHERE id = :storyId")
+    suspend fun deleteById(storyId: Long)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg storyItem: StoryItem)
 
